@@ -7,7 +7,6 @@ import Timer from "./components/timer";
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.hello = "Hello world";
         this.secondsDefault = 25 * 60;
         this.interval = null;
         this.state = {
@@ -38,6 +37,11 @@ class App extends React.Component {
         this.setState(() => ({
             allseconds: this.state.allseconds - 60,
         }));
+        if (this.state.allseconds === 0) {
+            this.setState(() => ({
+                allseconds: 0,
+            }));
+        }
         console.log(this.state.minute);
     }
 
@@ -46,7 +50,7 @@ class App extends React.Component {
             allseconds: --prevState.allseconds,
             mins: this.state.seconde % 60,
         }));
-        if (this.state.minute === 0) {
+        if (this.state.allseconds === 0) {
             clearInterval(this.interval);
             this.interval = null;
         }
