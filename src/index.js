@@ -76,6 +76,10 @@ class App extends React.Component {
             this.stopFunction();
             console.log("MODE STOP"); // this.stopFunction();
         }
+        if (this.state.allseconds === 0) {
+            clearInterval(this.interval);
+            this.interval = null;
+        }
     }
     resetFunction() {
         this.setState({allseconds: this.secondsDefault});
