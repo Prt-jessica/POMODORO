@@ -26,17 +26,17 @@ class App extends React.Component {
     }
 
     plusFunction() {
-        this.secondsDefault++;
-        this.setState(prevState => ({
-            minute: ++prevState.minute,
+        // this.secondsDefault++;
+        this.setState(() => ({
+            allseconds: this.state.allseconds + 60,
         }));
         console.log(this.state.minute);
     }
 
     moinsFunction() {
-        this.secondsDefault--;
-        this.setState(prevState => ({
-            minute: --prevState.minute,
+        // this.secondsDefault--;
+        this.setState(() => ({
+            allseconds: this.state.allseconds - 60,
         }));
         console.log(this.state.minute);
     }
@@ -74,7 +74,7 @@ class App extends React.Component {
         }
     }
     resetFunction() {
-        this.setState({minute: 25});
+        this.setState({allseconds: this.secondsDefault});
         console.log(this.state.minute);
     }
 
