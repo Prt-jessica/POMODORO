@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified \" && exit 1",
     "start": "parcel ./src/index.html",
-    "build": "start"
+    "build": "parcel build ./src/index.html"
   },
   "repository": {
     "type": "git",
