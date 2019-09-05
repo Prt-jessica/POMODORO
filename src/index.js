@@ -26,29 +26,27 @@ class App extends React.Component {
 
     plusFunction() {
         // this.secondsDefault++;
-        this.setState(() => ({
-            allseconds: this.state.allseconds + 60,
+        this.setState(prevState => ({
+            allseconds: prevState.allseconds + 60,
         }));
-        console.log(this.state.minute);
     }
 
     moinsFunction() {
         // this.secondsDefault--;
-        this.setState(() => ({
-            allseconds: this.state.allseconds - 60,
+        this.setState(prevState => ({
+            allseconds: prevState.allseconds - 60,
         }));
         if (this.state.allseconds === 0) {
             this.setState(() => ({
                 allseconds: 0,
             }));
         }
-        console.log(this.state.minute);
     }
 
     decompteFunction() {
         this.setState(prevState => ({
             allseconds: --prevState.allseconds,
-            mins: this.state.seconde % 60,
+            mins: prevState.seconde % 60,
         }));
         if (this.state.allseconds === 0) {
             clearInterval(this.interval);
@@ -67,14 +65,12 @@ class App extends React.Component {
             this.interval = setInterval(() => {
                 this.decompteFunction();
             }, 1000);
-            console.log("MODE PLAY");
         } else {
             this.setState(() => ({
                 mode: "PLAY",
                 running: false,
             }));
-            this.stopFunction();
-            console.log("MODE STOP"); // this.stopFunction();
+            this.stopFunction(); // this.stopFunction();
         }
         if (this.state.allseconds === 0) {
             clearInterval(this.interval);
@@ -83,7 +79,6 @@ class App extends React.Component {
     }
     resetFunction() {
         this.setState({allseconds: this.secondsDefault});
-        console.log(this.state.minute);
     }
 
     render() {

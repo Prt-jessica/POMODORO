@@ -30690,7 +30690,6 @@ function (_React$Component) {
     _classCallCheck(this, App);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
-    _this.hello = "Hello world";
     _this.secondsDefault = 25 * 60;
     _this.interval = null;
     _this.state = {
@@ -30713,38 +30712,42 @@ function (_React$Component) {
   _createClass(App, [{
     key: "plusFunction",
     value: function plusFunction() {
-      this.secondsDefault++;
+      // this.secondsDefault++;
       this.setState(function (prevState) {
         return {
-          minute: ++prevState.minute
+          allseconds: prevState.allseconds + 60
         };
       });
-      console.log(this.state.minute);
     }
   }, {
     key: "moinsFunction",
     value: function moinsFunction() {
-      this.secondsDefault--;
+      // this.secondsDefault--;
       this.setState(function (prevState) {
         return {
-          minute: --prevState.minute
+          allseconds: prevState.allseconds - 60
         };
       });
-      console.log(this.state.minute);
+
+      if (this.state.allseconds === 0) {
+        this.setState(function () {
+          return {
+            allseconds: 0
+          };
+        });
+      }
     }
   }, {
     key: "decompteFunction",
     value: function decompteFunction() {
-      var _this2 = this;
-
       this.setState(function (prevState) {
         return {
           allseconds: --prevState.allseconds,
-          mins: _this2.state.seconde % 60
+          mins: prevState.seconde % 60
         };
       });
 
-      if (this.state.minute === 0) {
+      if (this.state.allseconds === 0) {
         clearInterval(this.interval);
         this.interval = null;
       }
@@ -30757,7 +30760,7 @@ function (_React$Component) {
   }, {
     key: "startFunction",
     value: function startFunction() {
-      var _this3 = this;
+      var _this2 = this;
 
       if (this.state.running === false) {
         this.setState(function () {
@@ -30767,9 +30770,8 @@ function (_React$Component) {
           };
         });
         this.interval = setInterval(function () {
-          _this3.decompteFunction();
+          _this2.decompteFunction();
         }, 1000);
-        console.log("MODE PLAY");
       } else {
         this.setState(function () {
           return {
@@ -30777,17 +30779,20 @@ function (_React$Component) {
             running: false
           };
         });
-        this.stopFunction();
-        console.log("MODE STOP"); // this.stopFunction();
+        this.stopFunction(); // this.stopFunction();
+      }
+
+      if (this.state.allseconds === 0) {
+        clearInterval(this.interval);
+        this.interval = null;
       }
     }
   }, {
     key: "resetFunction",
     value: function resetFunction() {
       this.setState({
-        minute: 25
+        allseconds: this.secondsDefault
       });
-      console.log(this.state.minute);
     }
   }, {
     key: "render",
@@ -30815,7 +30820,7 @@ function (_React$Component) {
 }(_react.default.Component);
 
 _reactDom.default.render(_react.default.createElement(App, null), document.querySelector("#app"));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/button":"components/button.js","./components/timer":"components/timer.js"}],"../../../../../usr/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/button":"components/button.js","./components/timer":"components/timer.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -30843,7 +30848,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42017" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37603" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -31018,5 +31023,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../usr/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
+},{}]},{},["../node_modules/parcel/src/builtins/hmr-runtime.js","index.js"], null)
 //# sourceMappingURL=/src.e31bb0bc.js.map
