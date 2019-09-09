@@ -1,8 +1,13 @@
+global.jQuery = require("jquery");
+require("bootstrap");
+import "bootstrap/dist/css/bootstrap.css";
+
 import React from "react";
 import ReactDOM from "react-dom";
 
 import Button from "./components/button";
 import Timer from "./components/timer";
+import TimerModal from "./components/modal";
 
 class App extends React.Component {
     constructor(props) {
@@ -80,7 +85,6 @@ class App extends React.Component {
     resetFunction() {
         this.setState({allseconds: this.secondsDefault});
     }
-
     render() {
         return (
             <div>
@@ -93,6 +97,7 @@ class App extends React.Component {
                 <Button value={this.state.mode} handleFunct={this.start} />
                 <Button value={"Reset"} handleFunct={this.reset} />
                 {/* <Button value={"STOP"} handleFunct={this.stop} /> */}
+                <TimerModal />
             </div>
         );
     }
